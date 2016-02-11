@@ -65,7 +65,17 @@
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
         if (xhr.readyState == 4 && xhr.status == 200) {
+          // Solution 1 :
           document.getElementById('contenu').innerHTML = xhr.responseText;
+          // Solution 2 :
+          //var chaine = xhr.responseText;
+          //var reg = new RegExp("[;]+", "g");
+          //var tableau = chaine.split(reg);
+          //var res = "";
+          //for (var i=0; i<tableau.length; i++) {
+          // res = res + tableau[i] + "<br>";
+          //}
+          //document.getElementById('contenu').innerHTML = res;
         } else {
           //alert("readyState = " + xhr.readyState + " ; status = " + xhr.status);
           document.getElementById('contenu').innerHTML = "!!! Problème !!!<br>readyState = " + xhr.readyState + " ; status = " + xhr.status;

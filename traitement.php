@@ -19,6 +19,7 @@ if (isset($_POST['id']) AND $_POST['id'] !='') {
 
   $query = $bdd->query("SELECT * FROM client WHERE id=".$_POST['id']);
   $back = $query->fetch();
+    // Solution 1 :
     echo "<table style='margin:auto;border-collapse:collapse'>";
     echo "<tr><td style='border:1px solid black;padding:5px'colspan=2>Données du client sélectionné</td></tr>";
     echo "<tr><td style='border:1px solid black;padding:5px'>nom</td><td style='border:1px solid black;padding:5px'>" . $back["nom"] . "</td></tr>";
@@ -28,6 +29,8 @@ if (isset($_POST['id']) AND $_POST['id'] !='') {
     echo "<tr><td style='border:1px solid black;padding:5px'>email</td><td style='border:1px solid black;padding:5px'>" . $back["email"] . "</td></tr>";
     echo "<tr><td style='border:1px solid black;padding:5px'>téléphone</td><td style='border:1px solid black;padding:5px'>" . $back["telephone"] . "</td></tr>";
     echo "</table>";
+    // Solution 2 :
+    //echo "Nom : " . $back['nom'] . ";Prénom : " . $back['prenom'] . ";Profession : " . $back['profession'] . ";Age : " . $back['age'] . " ans;Email : " . $back['email'] . ";Téléphone : " . $back['telephone'];
   $query->closeCursor();
 }
 ?>
