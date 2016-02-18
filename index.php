@@ -24,7 +24,8 @@
         <div class="col-xs-12 col-sm-12 col-md-offset-1 col-md-10 col-lg-offset-2 col-lg-8">
           <!-- liste déroulante -->
           <form action="" method="post">
-            <select name="cliSelect" onchange="request(this.value)">
+            <!--<select name="cliSelect" onchange="request(this.value)">-->
+            <select name="cliSelect" onchange="request2(this.value)">
               <option value="">Sélectionner un client</option>
               <?php
               try
@@ -61,6 +62,7 @@
     <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
     <script src="bootstrap-3.3.6-dist/js/bootstrap.min.js"></script>
     <script>
+    // Ajax Javascript :
     function request(idcli) {
       var xhr = new XMLHttpRequest();
       xhr.onreadystatechange = function() {
@@ -86,6 +88,21 @@
       xhr.open('POST','traitement.php',true);
       xhr.setRequestHeader('Content-Type','application/x-www-form-urlencoded');
       xhr.send(params);
+    };
+    // Ajax jquery : 
+    function request2(idcli) {
+      $.ajax({
+        type: 'POST',
+        data: "id=" + idcli,
+        dataType: 'html',
+        url: 'traitement.php',
+        timeout: 3000,
+        success: function(code_html, statut) {
+          document.getElementById('contenu').innerHTML = code_html; },
+        error: function(resultat, statut, erreur) {
+          //alert('La requête n\'a pas abouti');
+          document.getElementById('contenu').innerHTML = "!!! Problème !!!<br>erreur : " + erreur; }
+      });
     };
     </script>
   </body>
